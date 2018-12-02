@@ -44,7 +44,7 @@ Make sure to include the video file in the `smart-bartender-iot-edge/EdgeSolutio
 
 In the deployment manifest `smart-bartender-iot-edge/EdgeSolution/deployment.template.json`, modify video path:
 
-    "createOptions": "{\"Env\":[\"VIDEO_PATH=./dubstep-bird-original-5-sec-video.mp4\"]}"
+    "createOptions": "{\"Env\":[\"VIDEO_PATH=dubstep-bird-original-5-sec-video.mp4\"]}"
 
 ### To deploy the solution on a Raspberry Pi 3
 
