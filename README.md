@@ -26,6 +26,26 @@ There are two modules :
 
 ## Get started
 
+Open the project with Visual Studio Code.
+
+### Configurations
+
+The camera mount path or the video file must be provided through the VIDEO_PATH environment variable:
+
+#### Camera mount
+
+In the deployment manifest `smart-bartender-iot-edge/EdgeSolution/deployment.template.json`, modify video path:
+
+    "createOptions": "{\"Env\":[\"VIDEO_PATH=/dev/video0\"]}"
+
+#### Video file
+
+Make sure to include the video file in the `smart-bartender-iot-edge/EdgeSolution/modules/camera-capture/Dockerfile.arm32v7`
+
+In the deployment manifest `smart-bartender-iot-edge/EdgeSolution/deployment.template.json`, modify video path:
+
+    "createOptions": "{\"Env\":[\"VIDEO_PATH=./dubstep-bird-original-5-sec-video.mp4\"]}"
+
 ### To deploy the solution on a Raspberry Pi 3
 
 From your mac or PC:
