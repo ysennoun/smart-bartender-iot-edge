@@ -12,7 +12,7 @@
               "iotedgeregistery": {
                 "username": "$CONTAINER_REGISTRY_USERNAME_iotedgeregistery",
                 "password": "$CONTAINER_REGISTRY_PASSWORD_iotedgeregistery",
-                "address": "CONTAINER_REGISTRY_ADDRESS_iotedgeregistery"
+                "address": "$CONTAINER_REGISTRY_ADDRESS_iotedgeregistery"
               }
             }
           }

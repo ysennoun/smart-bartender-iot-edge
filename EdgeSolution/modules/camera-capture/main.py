@@ -57,9 +57,9 @@ def main_function(endpoint_url, input_loc, output_loc, hubManager):
         headers = {'Content-Type': 'application/octet-stream'}
         img = open(picture_location, 'rb')
         response = requests.post(headers = headers, url=endpoint_url, data = img)
-        print(response.content)
         sendTime = (int)(time.mktime(datetime.utcnow().timetuple()))
         msg_txt_formatted = str(set_msg_txt(response.content, sendTime))
+        print("Message to send to IoT Hub: " + msg_txt_formatted)
         message = IoTHubMessage(bytearray(msg_txt_formatted, 'utf8'))
         hubManager.send_event_to_output("output1", message, 0)
     except requests.exceptions.RequestException as e:  # This is the correct syntax

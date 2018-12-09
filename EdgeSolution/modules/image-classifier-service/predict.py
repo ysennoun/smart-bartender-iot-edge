@@ -24,7 +24,7 @@ def predict_image(image_file):
     os.system('rm ' + image_file)
     result = []
     if out:
-        outs = str(out).split('\n')
+        outs = str(out).split('\\n')
         for prediction in outs:
             res = re.search(REGEX, prediction)
             if res and len(res.groups()) == 2:
