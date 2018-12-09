@@ -14,7 +14,8 @@ from iothub_client import (IoTHubModuleClient, IoTHubClientError, IoTHubError,
 SEND_CALLBACKS = 0
 
 # Define the JSON message to send to IoT Hub.
-MSG_TXT = "{\"table\": \"T10\",\"drink\": %r,\"sendTime\": %r}"
+def set_msg_txt(predictions, sendTime):
+    return {"table": "T10","predictions": predictions,"sendTime": sendTime}
 
 def send_to_Hub_callback(strMessage):
     message = IoTHubMessage(bytearray(strMessage, 'utf8'))
@@ -58,7 +59,7 @@ def main_function(endpoint_url, input_loc, output_loc, hubManager):
         response = requests.post(headers = headers, url=endpoint_url, data = img)
         print(response.content)
         sendTime = (int)(time.mktime(datetime.utcnow().timetuple()))
-        msg_txt_formatted = MSG_TXT % (response.content, sendTime)
+        msg_txt_formatted = str(set_msg_txt(response.content, sendTime))
         message = IoTHubMessage(bytearray(msg_txt_formatted, 'utf8'))
         hubManager.send_event_to_output("output1", message, 0)
     except requests.exceptions.RequestException as e:  # This is the correct syntax

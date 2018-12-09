@@ -7,7 +7,8 @@ from PIL import Image
 
 REGEX="(.*)\(score = (.*)\)"
 # Define the JSON message to send to IoT Hub.
-PREDICTION = "{\"prediction\": \"%r\",\"score\": %r}"
+def set_prediction(prediction, score):
+    return {"prediction": prediction,"score": score}
 
 def initialize_model():
     model_cmd = 'python3 classify_image.py --model_dir=tmp_prediction'
@@ -27,7 +28,7 @@ def predict_image(image_file):
         for prediction in outs:
             res = re.search(REGEX, prediction)
             if res and len(res.groups()) == 2:
-                result.append(PREDICTION % (res.group(1), res.group(2)))
-        return [','.join(result)]
+                result.append(set_prediction(res.group(1), res.group(2)))
+        return result
     else:
         return []
